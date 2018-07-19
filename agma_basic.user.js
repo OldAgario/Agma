@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Agma.io
+// @name         Agma.io BASIC
 // @namespace    http://agma.io/
 // @version      4.2
 // @description  Fast mass ejector, Respawn macro, Cell chat command
