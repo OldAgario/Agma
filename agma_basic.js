@@ -1,245 +1,225 @@
 // ==UserScript==
-// @name         AGAR.io Classic
-// @namespace    Agar.io
-// @version      2.21
-// @description  Agar.io single UI, hotkeys, macro actions and ads removal extension
-// @author       MacGruber
-// @homepage     http://agar.io/
-// @match        http://agar.io/*
-// @icon         http://agar.io/favicon.ico
-// @run-at       document-end
-// @require      http://glyphfonts.ru/plusio/video_skin_obf.js
+// @name         Agma.io BASIC
+// @namespace    http://agma.io/
+// @version      4.2
+// @description  Fast mass ejector, respawn macro, fast respawn, fast feed, fast splits,  cell chat command, show level and hours
+// @author       Heisenberg
+// @homepage     http://agma.io/
+// @match        agma.io
+// @icon         https://www.google.com/s2/favicons?domain=agma.io
 // @grant        none
+// @run-at       document-end
 // ==/UserScript==
 
-var master = document.getElementsByTagName("script"),
-    masterVersion = master[19].src.replace(/.*?=/, '.'); //.slice(-3)
-
-var year = (new Date()).getFullYear();
-//STYLES
-//$(".btn-play").text('Play');
-$("#adsBottom, #advertisement, #mcbanners-container, .try-now, #agarYoutube, .fb-like").remove();
-$(".btn-settings, .btn-login-play, .agario-profile-name").remove(); //
-$('.btn-play, .btn-play-guest').css({'width':'275px','margin':'0 5px 0 0'});
-$('.progress-bar-text').css({'width':'88%'});
-$('.agario-wallet-plus span').css('top','0');
-$('.agario-wallet-label').css({'margin':'0','top':'-1px'});
-$('.agario-wallet-dna').css('right','32px');
-$('#settings, #socialLoginContainer').css('display','block');
-$('#mainPanel').css('padding','5px 15px 15px');
-$('span[data-itr="menu_settings_arena_sfx"]').text('Game SFX');
-$('span[data-itr="menu_settings_sfx"]').text('Menu SFX');
-$('#options label:last').remove();
-//$('h2').css('font-family','Khula');
-$('.form-group div h2').text('Lagario Classic');
-$('.agario-shop-panel').css('padding','15px 15px 10px');
-
-/*
-//CUSTOM PROFILE IMAGE
-$('<label><input type="checkbox" id="customProfImg" style="margin-top: 1px"><span data-itr="page_option_show_online_status">Custom Profile Pic</span></label>').insertBefore('#options label:last');
-$('<img id="ttt" style="float: left;display: block;width:64px;height:64px;border-radius:5px;border:2px solid#CCC;margin-right:6px;display:none;">').prependTo('.agario-profile-panel div:first');
-
-$(document).on('change', '#customProfImg',  function() {
-    $('.agario-profile-picture').toggle();
-    $('#ttt').attr('src', 'https://i.imgur.com/Oq17zuPt.png');
-    $('#ttt').toggle();
-});
-
-var checkboxValues = JSON.parse(localStorage.getItem('checkboxValues')) || {},
-    $checkboxes = $("#customProfImg");
-$checkboxes.on("change", function(){
-  $checkboxes.each(function(){
-    checkboxValues[this.id] = this.checked;
-  });
-  localStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
-});
-
-// On page load
-$.each(checkboxValues, function(key, value) {
-  $("#" + key).prop('checked', value);
-});
-$( document ).ready(function() {
-    if ($('#customProfImg').is(':checked') == true) {
-    $('.agario-profile-picture').toggle();
-    $('#ttt').attr('src', 'https://i.imgur.com/Oq17zuPt.png');
-    $('#ttt').toggle();
-}
-});
-*/
-
-//CREATE FREEZE CELL COVER LAYER
-$('<div id="freeze" style="position:absolute;height:100%;width:100%;display:none;">'+
-'<span>PAUSE</span></div>').insertAfter('#canvas');
-$('#freeze span').css({
-	'background':'rgba(0,0,0, .5)',
-	'padding':'2px 10px',
-	'font-size':'150%',
-	'font-weight':'700',
-	'font-family':'Ubuntu',
-	'color':'red',
-	'position':'fixed',
-	'top':'30%',
-	'left':'50%',
-	'transform':'translate(-50%, 0)',
-	'-ms-user-select':'none',
-	'-webkit-user-select':'none',
-	'cursor':'default'
-});
-/*
-//MOVE QUEST AND POTIONS BUTTONS TO THE MAIN PANEL
-$('#dailyQuestsButton').css('margin-top','10px');
-$("#dailyquests-panel").appendTo('.agario-profile-panel');
-$('#quests-blocker, #dailyQuestsButton, #potions-blocker, #potionsButton').unwrap();
-
-//MOVE SHOP TO THE MAIN PANEL
-$(".agario-shop-panel").appendTo('.agario-profile-panel');
-$('#openShopBtn').css('margin-top','10px');
-$('#agario-second-buttons, .shop-left-container, .vertical-line, .shop-right-container, .agario-shop-panel span.text-muted, #retryBtn, #promo-badge-container').unwrap();
-$('.agario-profile-panel').css('padding','15px 15px 10px');
-*/
-//MOVE SETTINGS BLOCK
-$('#settings').insertBefore('#instructions');
-
-//ADD MORE INSTRUCTIONS
-$('<span data-itr="page_instructions_q">Press <b>Q</b> to macro feed</span></br>'+
-'<span data-itr="page_instructions_p">Press <b>P</b> to freeze cell</span></br>'+
-'<span data-itr="page_instructions_shift">Press <b>SHIFT</b> to split 16</span></br>'+
-'<span data-itr="page_instructions_r">Press <b>R</b> to browse servers</span>').appendTo('#instructions center .text-muted');
-
-//ADD COPY
-$('<div id="copy"><hr style="margin-top:10px;margin-bottom:10px;">'+
-'<center><span class="text-muted" style="color:#3071a9;">Author: '+GM_info.script.author+' &copy;'+year+' | v'+GM_info.script.version+'</span></center></div>').insertAfter('#instructions');
-
-$('#tags-container').insertAfter('#copy');
-$('#user-id-tag').insertAfter('#version-tag');
-
-//ADD YT SKIN CHECK LINK TO BOTTOM RIGHT FOOTER
-$('<div id="yt_check" class="tosBox" style="display:none;padding:5px;color:#777;border:1px solid #777;border-radius:5px 0 0 5px;bottom:30px;right:0;position:absolute;z-index:1001;">'+
-'Check if new skins came out.'+
-'</div>').prependTo('.right');
-$('.right center').append(' | <a id="yt_skins" href="https://www.youtube.com/results?q=agario+new+skins&sp=EgIIAg%253D%253D" target="_blank" class="text-muted" data-itr="youtube_new_skins_check">YouTube</a>'+
-'<script>$("#yt_skins").mouseover(function(){$("#yt_check").show();});$("#yt_skins").mouseout(function(){$("#yt_check").hide();});</script>');
-
-//RECONNECT BUTTON
-$('<button id="reconnect" type="button" class="btn btn-success" style="display:block;width:40px;height:35px;float:right;"><i class="glyphicon glyphicon-refresh"></i></button>').insertAfter('.btn-play');
-$("#reconnect").click(function() {
-    MC.reconnect();
-});
-/*
-//AUTO LAUNCH
-setTimeout(function() {
-    $(".btn-spectate").click();
-}, 3300);
-setTimeout(function() {
-    esc();
-}, 3500);
-*/
-//CONTROLS
 //https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
+
+// T - fast respawn
+// 1 - shake
+// 2 - spin
+// 3 - flip
+// W - fast feed
+// Q - massive split
+// A - triple split
+// D - double split
+// L - show level
+// H - show time
+// 4 - chat message
+
+//https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
+
+//EDIT KEYBINDS
+var food = 87; // Q - 81, 87 - W
+var resp = 84; // T
+var shake = 49; // 1
+var spin = 50; // 2
+var flip = 51; // 3
+var dubl = 68; // D
+var tripl = 65; // A
+var mxsplt = 16; // SHIFT
+var chat1 = 52; // 4
+var chat2 = 53; // 5
+var hrs = 72; // H
+var lvl = 76; // L
+//END EDIT KEYBINDS
+
+//EDIT MESSAGES
+var msg1 = 'FEED!';
+var msg2 = 'Where are you?';
+//END EDIT MESSAGES
 var down = {};
+
 $(document).keydown(function(event){
-    if($("#nick").is(":focus")) return; //Will fail if input focused.
-var keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '192'){ // 18 - ALT, 192 - TILDE - spectate
-        if (down['192'] == null) { // first press
-            $(".btn-spectate").click();
-            down['192'] = true; // record that the key's down
+     var keycode = (event.keyCode ? event.keyCode : event.which);
+	if (keycode == resp){ // 18 - ALT, 192 - TILDE - Num0
+		if (down[resp] == null) { // first press
+			if ($("input").is(":focus")) {
+				return true;
+		} else {
+			//closeStats();
+			$("img[title|='Respawn']").click();
+			//rspwn(document.getElementById('nick').value);
+			//play.click();
+		}
+			down[resp] = true; // record that the key's down
+		}
+	}
+	 if(keycode == shake){ // Key 1
+          if (down[shake] == null) {
+        if ($("input").is(":focus")) {
+            return true;
+        } else {
+            $('#chtbox').val('shake');
+            enter();enter();
         }
-    }
-    if(keycode == '68'){ // D - theme
-        if (down['68'] == null) {
-            $("#darkTheme").click();
-            down['68'] = true;
+              down[shake] = true;
+          }
+     }
+	 if(keycode == spin){ // Key 2
+          if (down[spin] == null) {
+        if ($("input").is(":focus")) {
+            return true;
+        } else {
+            $('#chtbox').val('spin');
+            enter();enter();
         }
-    }
-    if(keycode == '83'){ // S - skins
-        if (down['83'] == null) {
-            $("#noSkins").click();
-            down['83'] = true;
+              down[spin] = true;
+          }
+     }
+	 if(keycode == flip){ // Key 3
+          if (down[flip] == null) {
+        if ($("input").is(":focus")) {
+            return true;
+        } else {
+            $('#chtbox').val('flip');
+            enter();enter();
         }
-    }
-    if(keycode == '77'){ // M - mass
-        if (down['77'] == null) {
-            $("#showMass").click();
-            down['77'] = true;
-        }
-    }
-    if(keycode == '78'){ // N - names
-        if (down['78'] == null) {
-            $("#noNames").click();
-            down['78'] = true;
-        }
-    }
-    if(keycode == '80'){ // P - pause
-        if (down['80'] == null) {
-            X = window.innerWidth/2;
-            Y = window.innerHeight/2;
-            $("canvas").trigger($.Event("mousemove", {clientX: X, clientY: Y}));
-            $("#freeze").toggle();
-            down['80'] = true;
-        }
-    }
-    if(keycode == '82'){ // R - change server and go spectate
-        if (down['82'] == null) {
-            MC.reconnect();
-            setTimeout(function() {
-                $(".btn-spectate").click();
-            }, 25);
-            down['82'] = true;
-        }
-    }
+              down[flip] = true;
+          }
+     }
+	 if (keycode == hrs){ // Key H - Show Time
+		if (down[hrs] == null) {
+			if ($("input").is(":focus")) {
+				return true;
+		} else {
+			$('#chtbox').val('/hours');
+			enter();enter();
+		}
+			down[hrs] = true;
+		}
+	}
+	 if (keycode == lvl){ // Key L - Show Level
+		if (down[lvl] == null) {
+			if ($("input").is(":focus")) {
+				return true;
+		} else {
+			$('#chtbox').val('/level');
+			enter();enter();
+		}
+			down[lvl] = true;
+		}
+	}
+	if (keycode == chat1){ // Key 4 - Chat Message 1
+		if (down[chat1] == null) {
+			if ($("input").is(":focus")) {
+				return true;
+			} else {
+				$('#chtbox').val('shake');
+				enter();enter();
+				setTimeout($('#chtbox').val(msg1), 400);
+				setTimeout(enter, 500);
+				setTimeout(enter, 600);
+			}
+			down[chat1] = true;
+		}
+	}
+	if (keycode == chat2){ // Key 5 - Chat Message 2
+		if (down[chat2] == null) {
+			if ($("input").is(":focus")) {
+				return true;
+			} else {
+				$('#chtbox').val(msg2);
+				enter();enter();
+			}
+			down[chat2] = true;
+		}
+	}
+	if (keycode == dubl){ // Key D - DOUBLE SPLIT
+		if (down[dubl] == null) {
+			if ($("input").is(":focus")) {
+				return true;
+			} else {
+				split();
+				setTimeout(split, 100);
+			}
+			down[dubl] = true;
+		}
+	}
+	if (keycode == tripl){ // Key A - TRIPLE SPLIT
+		if (down[tripl] == null) {
+			if ($("input").is(":focus")) {
+				return true;
+			} else {
+				split();
+				setTimeout(split, 100);
+				setTimeout(split, 100*2);
+			}
+			down[tripl] = true;
+		}
+	}
+	if (keycode == mxsplt){ // Key SHIFT - MEGA SPLIT
+		if (down[mxsplt] == null) {
+			if ($("input").is(":focus")) {
+				return true;
+			} else {
+				split();
+				setTimeout(split, 100);
+				setTimeout(split, 100*2);
+				setTimeout(split, 100*3);
+				setTimeout(split, 100*4);
+				setTimeout(split, 100*5);
+			}
+			down[mxsplt] = true;
+		}
+	}
 });
 $(document).keyup(function(event) {
      var keycode = (event.keyCode ? event.keyCode : event.which);
      down[keycode] = null;
 });
 
-//MACRO CONTROLS
 window.addEventListener('keydown', keydown);
 window.addEventListener('keyup', keyup);
 
 var EjectDown = false;
+
 var speed = 25; //in ms
 
 function keydown(event) {
-    if (event.keyCode == 81 && EjectDown === false) { // on press key Q
+    if (event.keyCode == food && EjectDown === false) { // W
         EjectDown = true;
         setTimeout(eject, speed);
     }
-    if (event.keyCode == 16) { //key SHIFT
-        split();
-        setTimeout(split, speed);
-        setTimeout(split, speed*2);
-        setTimeout(split, speed*3);
-    }
 }
+
 function keyup(event) {
-    if (event.keyCode == 81) { // on release key Q
+    if (event.keyCode == food) { // W
         EjectDown = false;
     }
 }
+
 function eject() {
     if (EjectDown) {
-        window.onkeydown({keyCode: 87}); // key W
-        window.onkeyup({keyCode: 87});
+        window.onkeydown({keyCode: 87}); // W DON'T CHANGE
+        window.onkeyup({keyCode: 87}); // W DON'T CHANGE
         setTimeout(eject, speed);
     }
 }
+
 function split() {
     $("body").trigger($.Event("keydown", { keyCode: 32})); //key SPACE
     $("body").trigger($.Event("keyup", { keyCode: 32})); //jquery is required for split to work
 }
-function esc() {
-    $("body").trigger($.Event("keydown", { keyCode: 27}));
-    $("body").trigger($.Event("keyup", { keyCode: 27}));
+function enter() {
+    $("body").trigger($.Event("keydown", { keyCode: 13})); //key Enter
+    $("body").trigger($.Event("keyup", { keyCode: 13}));
 }
-
-//MAP AUTO LAUNCH
-console.log(CanvasRenderingContext2D.prototype._drawImage = CanvasRenderingContext2D.prototype.drawImage, CanvasRenderingContext2D.prototype.drawImage = function() {
-  if (arguments[0].src) {
-    if ("http://agar.io/img/background.png" == arguments[0].src) {
-      arguments[0].src = "";
-    }
-  }
-  this._drawImage.apply(this, arguments);
-});
