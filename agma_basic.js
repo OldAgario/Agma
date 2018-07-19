@@ -1,29 +1,3 @@
-// ==UserScript==
-// @name         Agma.io BASIC
-// @namespace    http://agma.io/
-// @version      4.2
-// @description  Fast mass ejector, respawn macro, fast respawn, fast feed, fast splits,  cell chat command, show level and hours
-// @author       Heisenberg
-// @homepage     http://agma.io/
-// @match        agma.io
-// @icon         https://www.google.com/s2/favicons?domain=agma.io
-// @grant        none
-// @run-at       document-end
-// ==/UserScript==
-
-//https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
-
-// T - fast respawn
-// 1 - shake
-// 2 - spin
-// 3 - flip
-// W - fast feed
-// Q - massive split
-// A - triple split
-// D - double split
-// L - show level
-// H - show time
-// 4 - chat message
 
 //https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
 
