@@ -1,15 +1,16 @@
 // ==UserScript==
 // @name         Agma.io BASIC
-// @namespace    http://agma.io/
-// @version      1.1
-// @description  Fast mass ejector, respawn macro, fast respawn, fast feed, fast splits, cell chat command, show level and hours, antispam
-// @author       Heisenberg
-// @homepage     http://agma.io/
-// @match        agma.io
-// @icon         https://www.google.com/s2/favicons?domain=agma.io
-// @grant        GM.getValue
-// @grant        GM.setValue
-// @run-at       document-end
+// @namespace	 http://agma.io/
+// @version		 1.1
+// @description	 Fast mass ejector, respawn macro, fast respawn, fast feed, fast splits, cell chat command, show level and hours, antispam
+// @author		 Heisenberg
+// @homepage	 http://agma.io/
+// @match		 agma.io
+// @icon		 https://www.google.com/s2/favicons?domain=agma.io
+// @updateURL	 https://github.com/OldAgario/Agma/raw/master/agma_basic.user.js
+// @grant		 GM.getValue
+// @grant		 GM.setValue
+// @run-at		 document-end
 // ==/UserScript==
 
 //https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
