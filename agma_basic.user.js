@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Agma.io BASIC
+// @name         Agma.io BASIC GH
 // @namespace    http://agma.io/
 // @version      1.1
 // @description  Fast mass ejector, respawn macro, fast respawn, fast feed, fast splits, cell and chat commands, show level and hours, antispam
