@@ -13,7 +13,14 @@
 // @run-at       document-end
 // ==/UserScript==
 
-//https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
+/*
+To change your controls visit the link below.
+Press a desired key and take its code
+T is 84, if u want to change it, just press for ex. P - 80:
+var resp = 80; // P (Respawn)
+
+https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
+*/
 
 //EDIT KEYBINDS
 var food = 87; // W - 87 (Macro Feed)
