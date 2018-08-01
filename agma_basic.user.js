@@ -2,7 +2,7 @@
 // @name         Agma.io BASIC
 // @namespace    http://agma.io/
 // @version      1.1
-// @description  Fast mass ejector, respawn macro, fast respawn, fast feed, fast splits, cell chat command, show level and hours, antispam
+// @description  Fast mass ejector, respawn macro, fast respawn, fast feed, fast splits, cell and chat commands, show level and hours, antispam
 // @author       Heisenberg
 // @homepage     http://agma.io/
 // @match        agma.io
