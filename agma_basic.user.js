@@ -8,7 +8,8 @@
 // @match        agma.io
 // @icon         https://www.google.com/s2/favicons?domain=agma.io
 // @updateURL    https://github.com/OldAgario/Agma/raw/master/agma_basic.user.js
-// @grant        none
+// @grant        GM_setValue
+// @grant        GM_getValue
 // @run-at       document-end
 // ==/UserScript==
 
