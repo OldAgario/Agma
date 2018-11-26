@@ -9,7 +9,7 @@
 // @icon         https://www.google.com/s2/favicons?domain=agma.io
 // @updateURL    https://github.com/OldAgario/Agma/raw/master/agma_basic.user.js
 // @downloadURL  https://github.com/OldAgario/Agma/raw/master/agma_basic.user.js
-// @require      https://github.com/OldAgario/Agma/raw/master/agma.js
+// @require      https://github.com/OldAgario/Agma/raw/master/agma_basic.js
 // @grant        GM.addStyle
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -26,12 +26,9 @@ Tampermonkey is required to use this script!
 3 - Adjust your controls in the script
 	- open tampermonkey
 	- locate the Agma.io BASIC GH
-	- opent the script and read the instructions in the head of the script
+	- open the script and read the instructions in the head of the script
 	- customize your controls
 	- to change messages, simply replace text between "..."
-4 - Copy the customizable part and save it as *.TXT
-5 - when script gets update all your settings are reset to their defaults!!!
-6 - restore your settings - copy all data from previously saved *.TXT file
 ----------------------------
 If you want to customize your control settings - go to the link below,
 To change any button for any function, simply click a desired button in the input on that site and see it's code,
