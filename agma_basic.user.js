@@ -9,7 +9,6 @@
 // @icon         https://www.google.com/s2/favicons?domain=agma.io
 // @updateURL    https://github.com/OldAgario/Agma/raw/master/agma_basic.user.js
 // @downloadURL  https://github.com/OldAgario/Agma/raw/master/agma_basic.user.js
-// @require      https://github.com/OldAgario/Agma/raw/master/agma_basic.js
 // @grant        GM.addStyle
 // @grant        GM_setValue
 // @grant        GM_getValue
