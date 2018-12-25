@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Agma.io BASIC GH
 // @namespace    http://agma.io/
-// @version      3.2
+// @version      3.22
 // @description  Fast mass, fast splits, fast respawn, cell and chat commands, anti-spam
 // @author       Heisenberg-(TheOldOne)
 // @homepage     http://agma.io/
@@ -13,6 +13,20 @@
 // @grant        GM_getValue
 // @run-at       document-end
 // ==/UserScript==
+
+/*
+
+!!!!!!!!!!!!!!!!!!!!!!CANCELLING THE SCRIPT!!!!!!!!!!!!!!!!!!!!!!!!
+
+*/
+
+
+
+
+
+
+
+
 
 /*
 Userscript for AGMA.IO from Heisenberg (TheOldOne)
