@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Agma.io BASIC GH
 // @namespace    http://agma.io/
-// @version      3.22
+// @version      4.0
 // @description  Fast mass, fast splits, fast respawn, cell and chat commands, anti-spam
 // @author       Heisenberg-(TheOldOne)
 // @homepage     http://agma.io/
@@ -13,20 +13,6 @@
 // @grant        GM_getValue
 // @run-at       document-end
 // ==/UserScript==
-
-/*
-
-!!!!!!!!!!!!!!!!!!!!!!CANCELLING THE SCRIPT!!!!!!!!!!!!!!!!!!!!!!!!
-
-*/
-
-
-
-
-
-
-
-
 
 /*
 Userscript for AGMA.IO from Heisenberg (TheOldOne)
@@ -54,14 +40,14 @@ and you change your "var resp = 84; // T (Respawn)" to "var resp = 80; // P (Res
 https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
 */
 
-//EDIT KEYBINDS: IF YOU WANT TO TURN OFF THE FUNCTION - PUT = 0
+//EDIT KEYBINDS: IF YOU WANT TO TURN THE FUNCTION OFF - set = 0
 var food = 87; // W - 87 (Macro Feed)
 var singleFood = 81; // Q - 81 (Single Feed)
 var resp = 84; // T (Respawn)
 var dubl = 68; // D (Double Split)
 var tripl = 65; // A (Triple Split)
 var mxsplt = 16; // SHIFT (Max Split)
-//---
+//CHAT
 var chat1 = 49; // Key 1 (Chat 1)
 var chat2 = 50; // Key 2 (Chat 2)
 var chat3 = 51; // Key 3 (Chat 3)
