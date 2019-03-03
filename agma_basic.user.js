@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Agma.io BASIC GH
 // @namespace    http://agma.io/
-// @version      4.0
+// @version      4.0.1
 // @description  Fast mass, fast splits, fast respawn, cell and chat commands, anti-spam
 // @author       Heisenberg-(TheOldOne)
 // @homepage     http://agma.io/
