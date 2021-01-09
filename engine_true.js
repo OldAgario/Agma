@@ -4,7 +4,7 @@ engine.open('GET', document.getElementById('enginejs').getAttribute('path'), tru
 
 engine.onload = function () {
     var script = engine.responseText;
-		script = script.replace(/\bLeaderboard/, 'if (0)'); //ZOOM
+		script = script.replace(/\bLeaderboard/, 'TheOldOne'); //ZOOM
     eval(script);
 };
 engine.send();
